@@ -1,5 +1,6 @@
 import argparse
 from main import main
+import sys
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -34,10 +35,20 @@ if __name__ == "__main__":
         default="main",
     )
 
+    parser.add_argument(
+        "-p",
+        "--print-stats",
+        help="print statistics of the results to the terminal",
+        action="store_true",
+        default=False,
+    )
+
     parsed = parser.parse_args()
+
     main(
         parsed.repo_path,
         parsed.subtractive_strategy,
         parsed.commit_selector,
         parsed.branch,
+        parsed.print_stats,
     )

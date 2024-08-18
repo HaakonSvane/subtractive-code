@@ -20,7 +20,8 @@ You can run the script in CLI mode using `python cli.py`. Use option `-h` for he
 | `-s`, `--subtractive-strategy` | strategy to use for determining if a commit is a subtractive fix | NO | `diff` |
 | `-c`, `--commit-selector` | strategy to use for determining if a commit should be counted as a fix (a 'problem solve') | NO | `semantic` |
 |
-|`-b`, `--branch` | git branch to work from | NO | `main` |
+| `-b`, `--branch` | git branch to work from | NO | `main` |
+| `-p`, `--print-stats` | print statistics of the results to the terminal | NO | `False` | 
 
 ## Strategies
 The code for the tool is set up to support multiple strategies for resolving two key components needed for analysis. You are free to contribute with more strategies if you feel that they are either too simple, or lacking. 

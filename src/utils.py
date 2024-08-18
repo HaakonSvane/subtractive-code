@@ -1,7 +1,7 @@
 from git import Repo
 from tqdm import tqdm
-from strategies.commit_selector_strategies import *
-from strategies.subtractive_strategies import *
+from src.strategies.commit_selector_strategies import *
+from src.strategies.subtractive_strategies import *
 
 
 def get_repo(path: str) -> Repo:
@@ -16,7 +16,7 @@ def get_repo(path: str) -> Repo:
 
 
 def select_subtractive_strategy(strategy: str) -> SubtractiveStrategy:
-    strategy_map: dict[str, SubtractiveStrategy] = {"diff": GitDiffSelectorStrategy()}
+    strategy_map: dict[str, SubtractiveStrategy] = {"diff": GitDiffSubtractiveStrategy}
     if not strategy_map.get(strategy):
         raise ValueError(f"Unknown strategy: {strategy}")
     return strategy_map.get(strategy)
@@ -24,7 +24,7 @@ def select_subtractive_strategy(strategy: str) -> SubtractiveStrategy:
 
 def select_commit_selector_strategy(strategy: str) -> CommitSelectorStratgy:
     strategy_map: dict[str, CommitSelectorStratgy] = {
-        "semantic": SemanticCommitSelectorStrategy()
+        "semantic": SemanticCommitSelectorStrategy
     }
     if not strategy_map.get(strategy):
         raise ValueError(f"Unknown strategy: {strategy}")
