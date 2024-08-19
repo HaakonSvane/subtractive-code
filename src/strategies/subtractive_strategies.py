@@ -1,7 +1,10 @@
-from git import Commit, Repo
 from abc import abstractmethod
+
+from git import Commit, Repo
+from tabulate import SEPARATING_LINE, tabulate
 from tqdm import tqdm
-from tabulate import tabulate, SEPARATING_LINE
+
+from src.strategies.utils.is_quiet_mode import is_quiet_mode
 
 
 class SubtractiveStrategy:
@@ -29,6 +32,7 @@ class GitDiffSubtractiveStrategy(SubtractiveStrategy):
             desc="Filtering subtractive commits",
             unit=" commits",
             total=float("inf"),
+            disable=is_quiet_mode(),
         ):
             diff = commit.stats
             additions = diff.total["insertions"]
@@ -54,5 +58,5 @@ class GitDiffSubtractiveStrategy(SubtractiveStrategy):
                 "{:.2f}%".format(len_sub_commits / len_problem_solves * 100),
             ]
         )
-
-        print(tabulate(strategy_stats))
+        if not is_quiet_mode():
+            print(tabulate(strategy_stats))

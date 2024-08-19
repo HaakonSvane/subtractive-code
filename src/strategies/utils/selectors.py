@@ -1,18 +1,11 @@
-from git import Repo
-from tqdm import tqdm
-from src.strategies.commit_selector_strategies import *
-from src.strategies.subtractive_strategies import *
-
-
-def get_repo(path: str) -> Repo:
-    repo = None
-    with tqdm(desc="Fetching git repository", total=float("inf"), unit="items") as pbar:
-
-        def progressCallback(_, cur_count, max_count=None, message=""):
-            pbar.update(cur_count)
-
-        repo = Repo.clone_from(path, "./.tmp", progress=progressCallback)
-    return repo
+from src.strategies.subtractive_strategies import (
+    GitDiffSubtractiveStrategy,
+    SubtractiveStrategy,
+)
+from src.strategies.commit_selector_strategies import (
+    CommitSelectorStratgy,
+    SemanticCommitSelectorStrategy,
+)
 
 
 def select_subtractive_strategy(strategy: str) -> SubtractiveStrategy:

@@ -1,6 +1,6 @@
 import argparse
+
 from main import main
-import sys
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -21,8 +21,8 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "-c",
-        "--commit-selector",
+        "-p",
+        "--problem-selector",
         help="strategy to use for determining if a commit should be counted as a fix (a 'problem solve')",
         default="semantic",
         choices=["semantic"],
@@ -36,9 +36,17 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "-p",
-        "--print-stats",
-        help="print statistics of the results to the terminal",
+        "-v",
+        "--verbose-stats",
+        help="print statistics of the results to the terminal. Overridden by the `-q` flag",
+        action="store_true",
+        default=False,
+    )
+
+    parser.add_argument(
+        "-q",
+        "--quiet",
+        help="suppress all output from the program",
         action="store_true",
         default=False,
     )
@@ -46,9 +54,10 @@ if __name__ == "__main__":
     parsed = parser.parse_args()
 
     main(
-        parsed.repo_path,
-        parsed.subtractive_strategy,
-        parsed.commit_selector,
-        parsed.branch,
-        parsed.print_stats,
+        repo_path=parsed.repo_path,
+        subtractive_strategy=parsed.subtractive_strategy,
+        problem_solve_selector=parsed.problem_selector,
+        branch=parsed.branch,
+        quiet=parsed.quiet,
+        print_stats=parsed.verbose_stats,
     )
