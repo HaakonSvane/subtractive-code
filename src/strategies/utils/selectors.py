@@ -3,7 +3,7 @@ from src.strategies.subtractive_strategies import (
     SubtractiveStrategy,
 )
 from src.strategies.commit_selector_strategies import (
-    CommitSelectorStratgy,
+    CommitSelectorStrategy,
     SemanticCommitSelectorStrategy,
 )
 
@@ -15,8 +15,8 @@ def select_subtractive_strategy(strategy: str) -> SubtractiveStrategy:
     return strategy_map.get(strategy)
 
 
-def select_commit_selector_strategy(strategy: str) -> CommitSelectorStratgy:
-    strategy_map: dict[str, CommitSelectorStratgy] = {
+def select_commit_selector_strategy(strategy: str) -> CommitSelectorStrategy:
+    strategy_map: dict[str, CommitSelectorStrategy] = {
         "semantic": SemanticCommitSelectorStrategy
     }
     if not strategy_map.get(strategy):

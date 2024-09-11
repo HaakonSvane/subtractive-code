@@ -35,3 +35,6 @@ Code grows and shrinks over time. It is not uncommon for a software system to gr
 
 ### 2. Sutractive strategies
 There are tons of ways to measure code-complexity. I have included a very simple one that is based on a simple but effective metric, which is the number of lines of code in our application. Each commit provides insights into the diff, which is the number of new lines added minus the number lines removed. If this total is negative, the commit is deemed subtractive. This strategy is named `diff`.
+
+## The lab
+If you want to run this program on multiple repos, or just need a space to test it out at your own pace, check out the `lab.ipynb` notebook which contains some code for you to get started yourself.
